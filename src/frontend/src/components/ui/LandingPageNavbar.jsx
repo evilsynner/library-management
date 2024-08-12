@@ -9,7 +9,7 @@ export default function LandingPageNavbar() {
   };
 
   return (
-    <nav className="bg-gray-800 p-4">
+    <nav className="bg-gray-800 p-4 box-border">
       <div className="container mx-auto flex items-center justify-between">
         {/* Logo */}
         <div className="text-white text-lg font-semibold">
@@ -19,7 +19,7 @@ export default function LandingPageNavbar() {
         {/* Menu items for large screens */}
         <div className="hidden md:flex space-x-4">
           <Link to="#login" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Login</Link>
-          <Link to="#register" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Register</Link>
+          <Link to="/accounts/register/" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Register</Link>
         </div>
         
         {/* Mobile menu button */}
