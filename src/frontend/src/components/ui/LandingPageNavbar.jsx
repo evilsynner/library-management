@@ -44,7 +44,7 @@ export default function LandingPageNavbar() {
         className={`md:hidden ${isOpen ? 'block' : 'hidden'} mt-2 space-y-2`}
       >
         <Link to="#login" className="block text-white bg-gray-700 px-3 py-2 rounded">Login</Link>
-        <Link to="#register" className="block text-white bg-gray-700 px-3 py-2 rounded">Register</Link>
+        <Link to="/accounts/register/" className="block text-white bg-gray-700 px-3 py-2 rounded">Register</Link>
       </div>
     </nav>
   );
