@@ -48,7 +48,6 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    'api.apps.ApiConfig',
     'users.apps.UsersConfig',
 ]
 
