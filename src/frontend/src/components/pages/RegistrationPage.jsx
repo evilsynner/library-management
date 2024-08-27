@@ -5,10 +5,34 @@ export default function RegistrationPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log({ email, username, password });
+
+    const registrationData = {
+      email: email,
+      username: username,
+      password: password,
+    };
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/users/registration/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(registrationData),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+      } else {
+        const errorData = await response.json();
+        console.error(errorData);
+      }
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
