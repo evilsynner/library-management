@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export default function RegistrationPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [notification, setNotification] = useState({ message: "", type: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -11,33 +12,58 @@ export default function RegistrationPage() {
     const registrationData = {
       email: email,
       username: username,
-      password: password,
+      password: password
     };
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/users/registration/", {
-        method: "POST",
+      const response = await fetch('http://127.0.0.1:8000/users/registration/', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(registrationData),
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log(data);
+        showNotification("User created successfully!", "success");
+        setEmail("");
+        setUsername("");
+        setPassword("");
       } else {
         const errorData = await response.json();
-        console.error(errorData);
+        showNotification("Error: " + JSON.stringify(errorData), "error");
       }
     } catch (error) {
-      console.error(error);
+      showNotification("Error: " + error.toString(), "error");
     }
+  };
+
+  // Function to show notifications
+  const showNotification = (message, type) => {
+    setNotification({ message, type });
+
+    // Clear notification after 3 seconds
+    setTimeout(() => {
+      setNotification({ message: "", type: "" });
+    }, 3000);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-sm">
+      <div className="bg-gray-800 p-8 rounded-lg shadow-md w-full max-w-sm relative">
+
+        {/* Notification Banner */}
+        {notification.message && (
+          <div
+            className={`absolute top-0 left-0 right-0 p-4 text-center rounded-t-lg ${
+              notification.type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"
+            }`}
+          >
+            {notification.message}
+          </div>
+        )}
+
         <h2 className="text-2xl font-bold text-white mb-6 text-center">Create an account</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
@@ -55,7 +81,7 @@ export default function RegistrationPage() {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="email">
+            <label className="block text-gray-300 text-sm font-semibold mb-2" htmlFor="username">
               Your username
             </label>
             <input
@@ -95,4 +121,4 @@ export default function RegistrationPage() {
       </div>
     </div>
   );
-};
+}
