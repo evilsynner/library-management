@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 export default function RegistrationPage() {
   const [email, setEmail] = useState("");
@@ -116,7 +117,7 @@ export default function RegistrationPage() {
           </button>
         </form>
         <p className="mt-4 text-center text-gray-300">
-          Already have an account? <a href="#" className="text-blue-500 underline">Login here</a>
+          Already have an account? <Link to="/accounts/login/" className="text-blue-500 underline">Login here</Link>
         </p>
       </div>
     </div>
