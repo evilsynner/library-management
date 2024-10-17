@@ -18,7 +18,7 @@ export default function LandingPageNavbar() {
         
         {/* Menu items for large screens */}
         <div className="hidden md:flex space-x-4">
-          <Link to="#login" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Login</Link>
+          <Link to="/accounts/login/" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Login</Link>
           <Link to="/accounts/register/" className="text-white hover:bg-gray-700 px-3 py-2 rounded">Register</Link>
         </div>
         
@@ -43,7 +43,7 @@ export default function LandingPageNavbar() {
       <div 
         className={`md:hidden ${isOpen ? 'block' : 'hidden'} mt-2 space-y-2`}
       >
-        <Link to="#login" className="block text-white bg-gray-700 px-3 py-2 rounded">Login</Link>
+        <Link to="/accounts/login/" className="block text-white bg-gray-700 px-3 py-2 rounded">Login</Link>
         <Link to="/accounts/register/" className="block text-white bg-gray-700 px-3 py-2 rounded">Register</Link>
       </div>
     </nav>
